@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SingleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <SkipDevConfigFilesCheck>true</SkipDevConfigFilesCheck>
+    <ValidateRegExp>@(\w*)@</ValidateRegExp>
+    <SrcRoot>..\..\</SrcRoot>
+    <IncludeSingleConfigs>
+        <IncludeSingleConfig>
+            <FilePath>dev_default.xml</FilePath>
+
+            <GlobalConfigFileTransformations>
+                <!--ENVIRONMENT-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@ENVIRONMENTNAME@</string>
+                    </Patterns>
+                    <ReplaceTo>DeveloperLocal</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@ENVIRONMENTFROMEMAIL@</string>
+                    </Patterns>
+                    <ReplaceTo>dev@dev.ru</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!-- Clientrix -->
+                <!--Installer-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@SITE_FOLDER@</string>
+                    </Patterns>
+                    <ReplaceTo>@SrcRoot@</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@CORELIBS_FOLDER@</string>
+                    </Patterns>
+                    <ReplaceTo>@SrcRoot@v4\bin</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@SITE_HOST@</string>
+                    </Patterns>
+                    <ReplaceTo>clientrix2010</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@SITE_PORT@</string>
+                    </Patterns>
+                    <ReplaceTo>80</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@TAKE_SITE_HOST@</string>
+                    </Patterns>
+                    <ReplaceTo>@SITE_HOST@</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@TAKE_SITE_PORT@</string>
+                    </Patterns>
+                    <ReplaceTo>@SITE_PORT@</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@CFG_DB_SERVER_DATABASE_DIR@</string>
+                    </Patterns>
+                    <ReplaceTo>@SrcRoot@MSSQLDATA</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!--Database-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@DBHOST@</string>
+                        <string>@LOGDBHOST@</string>
+                        <string>@LOCALSTORAGEDBHOST@</string>
+                        <string>@QUARTZDBHOST@</string>
+                        <string>@SHORTURLDBHOST@</string>
+                    </Patterns>
+                    <ReplaceTo>.</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@DBNAME@</string>
+                        <string>@SHORTURLDBNAME@</string>
+                        <string>@DB_NAME@</string>
+                    </Patterns>
+                    <ReplaceTo>Clientrix</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@DBDATASET NAME@</string>
+                        <string>@DBDATASETNAME@</string>
+                    </Patterns>
+                    <ReplaceTo>Clientrix_datasets</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@DBUSER@</string>
+                        <string>@LOCALSTORAGEDBUSER@</string>
+                        <string>@QUARTZDBUSER@</string>
+                        <string>@SHORTURLDBUSER@</string>
+                        <string>@DB_USER@</string>
+                    </Patterns>
+                    <ReplaceTo>clientrix</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@DBPASS@</string>
+                        <string>@LOCALSTORAGEDBPASS@</string>
+                        <string>@QUARTZDBPASS@</string>
+                        <string>@SHORTURLDBPASS@</string>
+                        <string>@DB_PASS@</string>
+                    </Patterns>
+                    <ReplaceTo>Cl1entr1X</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!-- Clientrix site config -->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@SITEROOT@</string>
+                        <string>@TAKEROOT@</string>
+                        <string>@ROOT DIRECTORY@</string>
+                        <string>@ROOT DIR@</string>
+                        <string>@IS ROOT DIR@</string>
+                        <string>@VP ROOT DIR@</string>
+                        <string>@TAKE ROOT DIR@</string>
+                    </Patterns>
+                    <ReplaceTo>http://@SITE_HOST@:@SITE_PORT@</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@SITEROOTSSL@</string>
+                        <string>@TAKEROOTSSL@</string>
+                        <string>@ROOT DIRECTORY SSL@</string>
+                        <string>@SSL ROOT DIR@</string>
+                        <string>@IS SSL ROOT DIR@</string>
+                        <string>@VP SSL ROOT DIR@</string>
+                        <string>@TAKE SSL ROOT DIR@</string>
+                    </Patterns>
+                    <ReplaceTo>http://@SITE_HOST@:@SITE_PORT@</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@InvoiceOperatorEmail@</string>
+                        <string>@SupportEmail@</string>
+                        <string>@NotifyEmail@</string>
+                    </Patterns>
+                    <ReplaceTo>notExist@null.office</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@DMDistributionDatasetID@</Pattern>
+                    <ReplaceTo>12</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@DMReportDatasetID@</Pattern>
+                    <ReplaceTo>13</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@DMTemplateDatasetID@</Pattern>
+                    <ReplaceTo>14</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@DMTemplateElementDatasetID@</Pattern>
+                    <ReplaceTo>15</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@BatchContactsIdsMaxSize@</Pattern>
+                    <ReplaceTo>1000</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@PRODUCT NAME@</string>
+                    </Patterns>
+                    <ReplaceTo>Clientrix</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@ShortenerLinkBehavior@</string>
+                    </Patterns>
+                    <ReplaceTo>Redirect</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@ShortenerImageBehavior@</string>
+                    </Patterns>
+                    <ReplaceTo>Redirect</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@DistributionOwnerGroupID@</string>
+                    </Patterns>
+                    <ReplaceTo>6</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@SCHEDULER_HOST@</string>
+                    </Patterns>
+                    <ReplaceTo>localhost</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@DefaultSurveyThemeID@</string>
+                    </Patterns>
+                    <ReplaceTo>222</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!-- Mailer-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@NMailerLocation@</string>
+                        <string>@MAILER HOST@</string>
+                    </Patterns>
+                    <ReplaceTo>localhost</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!-- Task scheduler-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@SNAPSHOTSDBFILE@</Pattern>
+                    <ReplaceTo></ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@PATH_TO_LANG_RESOURCES@</string>
+                        <string>@PATH_TO_DEFAULT_STRINGS@</string>
+                        <string>@MAILER_LANG_PATH@</string>
+                    </Patterns>
+                    <ReplaceTo>@SrcRootQuoted@v4\\asp\\src\\portal\\resources\\strings.lrs</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@PATH_TO_FILE_STORAGE@</Pattern>
+                    <ReplaceTo></ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@SMTP_RELAY_IP@</string>
+                        <string>@SMTPRELAY@</string>
+                    </Patterns>
+                    <ReplaceTo>192.168.62.130</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@DNS SERVER IP LIST DIVIDED BY COMMAS@</Pattern>
+                    <ReplaceTo>192.168.62.1</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@ERROR DUMP DIR@</Pattern>
+                    <ReplaceTo>@SrcRootQuoted@Logs\\ErrorDump\\</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@ERROR DUMP URL PREFIX@</Pattern>
+                    <ReplaceTo>http://clientrix.trunk.rapidsoft.ru/errordump</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@CORE LOG DIR@</Pattern>
+                    <ReplaceTo>@SrcRootQuoted@Logs\\CoreLibs\\</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@MAILER_FILES_PATH@</Pattern>
+                    <ReplaceTo>@SrcRootQuoted@Mailer\\DistributionSessionData</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@BOUNCE DOMAIN@</Pattern>
+                    <ReplaceTo>dev.bounce.rapidsoft.ru</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@BOUNCE PORT@</Pattern>
+                    <ReplaceTo>35</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@SSDB PATH@</Pattern>
+                    <ReplaceTo>@SrcRootQuoted@Mailer\\StateStorage.mdb</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@Path to IIS log files@</Pattern>
+                    <ReplaceTo>@SrcRoot@Logs\W3SVC1\ex</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@Path to IIS SMTP log files, if exists@</Pattern>
+                    <ReplaceTo>@SrcRoot@Logs\SMTPSVC1\ex</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!--CommunicationLog (бд протоколов)-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@LOGDBNAME@</string>
+                    </Patterns>
+                    <ReplaceTo>Clientrix_Log</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@LOGDBUSER@</string>
+                    </Patterns>
+                    <ReplaceTo>clientrix</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@LOGDBPASS@</string>
+                    </Patterns>
+                    <ReplaceTo>Cl1entr1X</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!-- Communication (Модуль информирования) -->
+                <!--MongoDB-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@MONGODB_DIR@</Pattern>
+                    <ReplaceTo>@SrcRoot@MongoDB</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@MongoDBConnectionString@</Pattern>
+                    <ReplaceTo>mongodb://admin:Cl1entr1X@localhost:27017</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!--QUARTZ-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@DBHOST@</string>
+                        <string>@LOGDBHOST@</string>
+                        <string>@LOCALSTORAGEDBHOST@</string>
+                        <string>@QUARTZDBHOST@</string>
+                        <string>@SHORTURLDBHOST@</string>
+                        <string>@DB_SERVER@</string>
+                    </Patterns>
+                    <ReplaceTo>.</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@QUARTZDBNAME@</Pattern>
+                    <ReplaceTo>Clientrix_quartz</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Pattern>@QUARTZINSTANCE@</Pattern>
+                    <ReplaceTo>devrs</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!--LOCALSTORAGE-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@LOCALSTORAGEDBNAME@</string>
+                    </Patterns>
+                    <ReplaceTo>Clientrix_LocalStorage</ReplaceTo>
+                </ConfigFileTransformation>
+
+                <!--Auto patch-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@SYSNAME@</string>
+                    </Patterns>
+                    <ReplaceTo>Clientrix</ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@PATCHPATH@</string>
+                    </Patterns>
+                    <ReplaceTo>DatabaseCore</ReplaceTo>
+                </ConfigFileTransformation>
+                <!--Analytics-->
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@QBAKA_KEY@</string>
+                    </Patterns>
+                    <ReplaceTo></ReplaceTo>
+                </ConfigFileTransformation>
+                <ConfigFileTransformation xsi:type="StringReplaceConfigFileTransformation">
+                    <Patterns>
+                        <string>@GA_KEY@</string>
+                    </Patterns>
+                    <ReplaceTo></ReplaceTo>
+                </ConfigFileTransformation>
+            </GlobalConfigFileTransformations>
+        </IncludeSingleConfig>
+    </IncludeSingleConfigs>
+</SingleConfig>
