@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SingleConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<ValidateRegExp>@(\w*)@</ValidateRegExp>
+  <SrcRoot>..\..\</SrcRoot>
+  
+	<ConfigFiles>
+    <ConfigFile>
+      <FilePath>..\module\config.ini-TEMPLATE</FilePath>
+      <NewFilePath>..\module\config.ini</NewFilePath>
+    </ConfigFile>
+  </ConfigFiles>
+
+  <DevConfigFiles>
+    <ConfigFile>
+      <FilePath>..\..\v5\Src\Components\Components.build.config-TEMPLATE</FilePath>
+      <NewFilePath>..\..\v5\Src\Components\Components.build.config</NewFilePath>
+    </ConfigFile>
+  </DevConfigFiles>
+</SingleConfig>

@@ -1,6 +1,7 @@
 package netutil;
 
 import org.apache.commons.io.FileUtils;
+import org.omg.CORBA.REBIND;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,7 +18,7 @@ public class NetFile {
         try {
             return FileUtils.readFileToString(new File(filePath));
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

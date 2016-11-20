@@ -6,8 +6,8 @@ import java.util.ArrayList;
 
 class Program
 {
-    public static int main(String[] args) {
-        return Run(args);
+    public static void main(String[] args) {
+        Run(args);
     }
 
     private static int Run(String[] args)

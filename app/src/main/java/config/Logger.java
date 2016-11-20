@@ -1,9 +1,6 @@
 package config;
 
-import netutil.NetFile;
 import netutil.NetPath;
-
-import java.io.Console;
 
 public class Logger {
     private String  basePath;
@@ -25,5 +22,9 @@ public class Logger {
     public void Error(String text) {
         System.out.println(text);
 //        NetFile.AppendAllText(GetFilePath("error.txt"), string.Format("{0}{1}", text, Environment.NewLine));
+    }
+
+    public void Error(Exception e) {
+        e.printStackTrace();
     }
 }

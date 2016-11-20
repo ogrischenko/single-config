@@ -14,7 +14,7 @@ public class ConfigFile
 
     public String NewFilePath;
 
-    public Boolean SkipTransform;
+    public boolean SkipTransform;
 
     public Boolean SkipWhenFileLocked;
 

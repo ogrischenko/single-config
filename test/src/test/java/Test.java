@@ -15,7 +15,7 @@ import java.io.File;
 public class Test {
     @org.junit.Test
     public void testUnmarshall() throws Exception {
-        File file = new File("c:\\Work\\single-config\\test\\src\\main\\resources\\local.xml");
+        File file = new File("c:\\Work\\single-config\\app\\target\\classes\\local.xml");
         JAXBContext jaxbContext = JAXBContext.newInstance(SingleConfig.class);
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();

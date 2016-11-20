@@ -4,8 +4,12 @@ import config.*;
 import netutil.NetFile;
 import netutil.NetString;
 import netutil.NetPath;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 
+import java.io.File;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -37,7 +41,7 @@ public class Configurator {
             WriteObsolete();
             return 0;
         } catch (Exception e) {
-            log.Error(e.toString());
+            log.Error(e);
             return 1;
         } finally {
             log.Write("End");
@@ -58,7 +62,7 @@ public class Configurator {
     }
 
     private void ConfigureInternal(String configFileName, ConfigFileTransformation[] overrideTransforms) {
-        log.Write(String.format("Base path:{0}", basePath));
+        log.Write(String.format("Base path:%s", basePath));
 
         SingleConfig config = LoadSingleConfig(configFileName);
 
@@ -201,39 +205,31 @@ public class Configurator {
     }
 
     private ConfigFileTransformation[] GetSystemTransformations(String srcRoot) {
-//        var res = arguments.Select(a = > new StringReplaceConfigFileTransformation
-//        {
-//            Pattern = a.Key,
-//                    ReplaceTo = a.Value
-//        }).ToList();
-//
-//        res.Add(
-//                new StringReplaceConfigFileTransformation() {
-//                    Pattern=PatternSig+SysTokenKeys.EnvMachineName+PatternSig,
-//                    ReplaceTo=Environment.MachineName
-//                });
-//
-//        String srcRootFullPath = basePath;
-//
-//        if (srcRoot != null) {
-//            srcRootFullPath = NetPath.GetFullPath(NetPath.Combine(basePath, srcRoot));
-//        }
-//
-//        res.Add(
-//                new StringReplaceConfigFileTransformation() {
-//                    Pattern=PatternSig+SysTokenKeys.SrcRoot+PatternSig,
-//                    ReplaceTo=srcRootFullPath
-//                });
-//
-//        res.Add(
-//                new StringReplaceConfigFileTransformation() {
-//                    Pattern=PatternSig+SysTokenKeys.SrcRootQuoted+PatternSig,
-//                    ReplaceTo=srcRootFullPath.QuotStr()
-//                });
-//
-//        return res.ToArray();
-        return new ConfigFileTransformation[]{};
+        ArrayList<ConfigFileTransformation> res = new ArrayList<ConfigFileTransformation>();
 
+        for (CmdArgument arg: arguments) {
+            res.add(newStrRep(arg.getKey(), arg.getValue()));
+        }
+
+        res.add(newStrRep(PatternSig+SysTokenKeys.EnvMachineName+PatternSig, getMachineName()));
+
+        String srcRootFullPath = basePath;
+
+        if (srcRoot != null) {
+            srcRootFullPath = NetPath.GetFullPath(NetPath.Combine(basePath, srcRoot));
+        }
+
+        res.add(newStrRep(PatternSig+SysTokenKeys.SrcRoot+PatternSig, srcRootFullPath));
+        res.add(newStrRep(PatternSig+SysTokenKeys.SrcRootQuoted+PatternSig, StrUtils.QuotStr(srcRootFullPath)));
+
+        return res.toArray(new ConfigFileTransformation[1]);
+    }
+
+    private StringReplaceConfigFileTransformation newStrRep(String pattern, String replaceTo) {
+        StringReplaceConfigFileTransformation rep = new StringReplaceConfigFileTransformation();
+        rep.Pattern = pattern;
+        rep.ReplaceTo = replaceTo;
+        return rep;
     }
 
     private void ProcessTemplate(ITemplateProcessor templateProcessor, String basePath, ConfigFile configfile, ConfigFileTransformation[] globalTransforms, Boolean skipNotExisted) {
@@ -275,7 +271,7 @@ public class Configurator {
 //            }
 //        } catch (Exception e) {
 //            if (IsFileLocked(e)) {
-//                log.Write(String.format("NetFile %s is locked. Skip.", newFilePath));
+//                log.Write(String.format("File %s is locked. Skip.", newFilePath));
 //            } else {
 //                throw new RuntimeException(e);
 //            }
@@ -335,7 +331,7 @@ public class Configurator {
     }
 
     private static String ReplaceFullPath(String fileText) {
-        throw  new NotImplementedException();
+        return fileText;
 //        var match = new Regex( @ "@@(FULLPATH:[^@]*)@@").Match(fileText);
 //
 //        while (match.Success) {
@@ -405,7 +401,21 @@ public class Configurator {
     }
 
     public static String GetBasePath() {
-        return Configurator.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+        String file = Configurator.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+        File file1 = new File(file);
+        if (!file1.isDirectory()) {
+            return file1.getParent();
+        }
+        return file;
+    }
+
+    public String getMachineName() {
+        try {
+            return InetAddress.getLocalHost().getHostName();
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        return "error";
     }
 
 //    private String GetFilePath(String filePath) {

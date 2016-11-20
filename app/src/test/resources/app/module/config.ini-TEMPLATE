@@ -1,0 +1,39 @@
+[SiteConfig] 
+ApplicationName=Clientrix
+ConnectionString=Provider=SQLOLEDB.1;Password=@DBPASS@;User ID=@DBUSER@;Initial Catalog=@DBNAME@;Data Source=@DBHOST@
+CachedDatasetDatabaseName=@DBDATASETNAME@
+RootDirectory=@SITEROOT@
+RootDirectorySSL=@SITEROOTSSL@
+ISRootDirectory=@SITEROOT@
+ISRootDirectorySSL=@SITEROOTSSL@
+VPRootDirectory=@SITEROOT@
+VPRootDirectorySSL=@SITEROOTSSL@
+InvoiceOperatorEmail=@InvoiceOperatorEmail@
+SpamLimit=5000
+SupportEmail=@SupportEmail@
+NotifyEmail=@NotifyEmail@
+TakeRootDirectory=@TAKEROOT@
+TakeRootDirectorySSL=@TAKEROOTSSL@
+DefaultSurveyThemeID=@DefaultSurveyThemeID@
+NMailerLocation=@NMailerLocation@
+NMailerInstance=ClientrixMailerService
+IS5_AUTH_TICKET_NAME=IS5AUTHTICKET
+ResourcesFileName={settings}\..\resources\strings.lrs
+DefaultLanguage=ru-ru
+ISReportDataCaching=True
+Restriction.Days=0
+Restriction.Count=0
+LogFilePath=@Path to IIS log files@
+LogFilePathSMTP=@Path to IIS SMTP log files, if exists@
+MongoDBConnectionString=@MongoDBConnectionString@
+quartz.scheduler.instanceName=@QUARTZINSTANCE@
+quartz.jobStore.type=Quartz.Impl.AdoJobStore.JobStoreTX, Quartz
+quartz.jobStore.useProperties=false
+quartz.jobStore.dataSource=default
+quartz.jobStore.tablePrefix=QRTZ_
+quartz.jobStore.clustered=false
+quartz.jobStore.lockHandler.type=Quartz.Impl.AdoJobStore.UpdateLockRowSemaphore, Quartz
+quartz.dataSource.default.connectionString=Server=@QUARTZDBHOST@;Database=@QUARTZDBNAME@;Password=@DBPASS@;User ID=@DBUSER@;
+quartz.dataSource.default.provider=SqlServer-20
+Qbaka.Key=@QBAKA_KEY@
+GoogleAnalytics.Key=@GA_KEY@

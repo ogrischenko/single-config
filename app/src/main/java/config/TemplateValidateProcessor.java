@@ -34,12 +34,12 @@ public class TemplateValidateProcessor implements ITemplateProcessor
 
             while (m.find())
             {
-                sb.append(m.group(1));
+                sb.append(String.format("%s%s", m.group(1), Environment.NewLine));
             }
 
             if (sb.length() > 0)
             {
-                throw new RuntimeException(String.format("Validate template error NetFile %s Regexp:%s Found:%s", templateFullFilePath, validateRegExp, sb));
+                throw new RuntimeException(String.format("Validate template error File %s Regexp:%s Found:%s", templateFullFilePath, validateRegExp, sb));
             }
         }
 
